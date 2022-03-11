@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProactiveTwilioDialog.Adapters;
 using Microsoft.Bot.Builder.Dialogs;
+using ProactiveTwilioDialogAdapt;
 
 namespace ProactiveTwilioDialog
 {
@@ -35,6 +36,9 @@ namespace ProactiveTwilioDialog
 
             // The Dialog that will be run by the bot.
             services.AddSingleton<UserProfileDialog>();
+
+            services.AddSingleton<ProactiveTwilioDialogAdapter, ProactiveTwilioDialogAdapterWithErrorHandler>();
+
 
             // Create the bot as a transient. In this case the ASP Controller is expecting an IBot.
             services.AddTransient<IBot, DialogBot<UserProfileDialog>>();

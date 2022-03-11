@@ -43,6 +43,11 @@ namespace ProactiveTwilioDialog
         {
             Logger.LogInformation("Running dialog with Message Activity.");
 
+            if (turnContext.Activity.ChannelId == "twilio-proactive-sms")
+            {
+                //this is the dedection of our own proactive adapter because we named the channel id = twilio-proactive-sms
+            }
+
             // Run the Dialog with the new message Activity.
             await Dialog.RunAsync(turnContext, ConversationState.CreateProperty<DialogState>(nameof(DialogState)), cancellationToken);
         }
